@@ -1,0 +1,96 @@
+@font-face {
+    font-family: 'PP Neue Machina Inktrap';
+    src: url('PPNeueMachina-InktrapLight.woff2') format('woff2');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'PP Neue Machina Inktrap Light It';
+    src: url('PPNeueMachina-InktrapLightItalic.woff2') format('woff2');
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'PP Neue Machina Inktrap';
+    src: url('PPNeueMachina-InktrapRegular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'PP Neue Machina Inktrap';
+    src: url('PPNeueMachina-InktrapRegularItalic.woff2') format('woff2');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'PP Neue Machina Plain';
+    src: url('PPNeueMachina-PlainRegular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'PP Neue Machina Plain Light It';
+    src: url('PPNeueMachina-PlainLightItalic.woff2') format('woff2');
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'PP Neue Machina Inktrap UlBd It';
+    src: url('PPNeueMachina-InktrapUltraboldItalic.woff2') format('woff2');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'PP Neue Machina Inktrap Ulbold';
+    src: url('PPNeueMachina-InktrapUltrabold.woff2') format('woff2');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'PP Neue Machina Plain';
+    src: url('PPNeueMachina-PlainRegularItalic.woff2') format('woff2');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'PP Neue Machina Plain';
+    src: url('PPNeueMachina-PlainLight.woff2') format('woff2');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'PP Neue Machina Plain';
+    src: url('PPNeueMachina-PlainUltrabold.woff2') format('woff2');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'PP Neue Machina Plain Ulbold It';
+    src: url('PPNeueMachina-PlainUltraboldItalic.woff2') format('woff2');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
