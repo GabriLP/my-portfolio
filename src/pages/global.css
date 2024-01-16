@@ -1,0 +1,11 @@
+@font-face {
+  font-family: 'PP Neue Machina';
+  src: url('../../public/fonts/PPNeueMachina-InktrapRegular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
