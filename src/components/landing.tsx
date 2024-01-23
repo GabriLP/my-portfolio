@@ -4,12 +4,12 @@ import Typography from '@mui/material/Typography';
 
 const Landing: React.FC = () => {
   return (
-    <Box sx={{ height: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-      <Typography variant="h2" component="h1" gutterBottom>
-        Hello, world!
+    <Box sx={{ height: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'left' }}>
+      <Typography variant="h1" component="h1" gutterBottom>
+        Hi there, I&apos;m <br/> Gabriele La Piana.
       </Typography>
-      <Typography variant="subtitle1">
-        I&apos;m Gabriele, a Front-End Developer focused on crafting dynamic and interactive user interfaces
+      <Typography variant="h4" component="h4">
+        Front-End Developer based on Palermo, Italy.
       </Typography>
     </Box>
   );
