@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import emailjs from '@emailjs/browser';
-import { TextField, Button, Box, Alert } from '@mui/material';
 
 const ContactForm: React.FC = () => {
   const [sent, setSent] = useState(false);
@@ -22,14 +21,14 @@ const ContactForm: React.FC = () => {
   };
 
   return (
-    <Box component="form" onSubmit={sendEmail}>
-      {sent && <Alert severity="success">Message sent successfully!</Alert>}
-      {error && <Alert severity="error">Failed to send the message.</Alert>}
-      <TextField label="Name" name="user_name" variant="outlined" fullWidth margin="normal" required />
-      <TextField label="Email" name="user_email" variant="outlined" fullWidth margin="normal" required />
-      <TextField label="Message" name="message" variant="outlined" fullWidth margin="normal" multiline rows={4} required />
-      <Button type="submit" variant="contained" color="primary">Send</Button>
-    </Box>
+    <form onSubmit={sendEmail} className="space-y-4">
+      {sent && <div className="text-green-500">Message sent successfully!</div>}
+      {error && <div className="text-red-500">Failed to send the message.</div>}
+      <input className="w-full p-2 border border-gray-300 rounded-md" type="text" name="user_name" placeholder="Name" required />
+      <input className="w-full p-2 border border-gray-300 rounded-md" type="email" name="user_email" placeholder="Email" required />
+      <textarea className="w-full p-2 border border-gray-300 rounded-md" name="message" placeholder="Message" rows={4} required></textarea>
+      <button className="px-4 py-2 bg-blue-500 text-white rounded-md" type="submit">Send</button>
+    </form>
   );
 };
 

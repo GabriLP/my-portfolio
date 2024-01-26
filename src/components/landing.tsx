@@ -1,17 +1,15 @@
 import React from 'react';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
 
 const Landing: React.FC = () => {
   return (
-    <Box sx={{ height: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'left' }}>
-      <Typography variant="h1" component="h1" gutterBottom>
-        Hi there, I&apos;m <br/> Gabriele La Piana.
-      </Typography>
-      <Typography variant="h4" component="h4">
-        Front-End Developer based on Palermo, Italy.
-      </Typography>
-    </Box>
+    <div className="h-screen flex flex-col justify-center items-start p-4">
+      <h1 className="text-9xl font-anton mb-4">
+        HI THERE, I&apos;M <br/> GABRIELE LA PIANA.
+      </h1>
+      <p className="text-lg">
+        Front-End Developer based in Palermo, Italy.
+      </p>
+    </div>
   );
 };
 

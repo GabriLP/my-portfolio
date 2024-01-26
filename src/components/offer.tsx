@@ -1,61 +1,63 @@
 import React from 'react';
-import { Card, CardContent, Typography, Grid } from '@mui/material';
-import AccessibilityNewIcon from '@mui/icons-material/AccessibilityNew';
-import SpeedIcon from '@mui/icons-material/Speed';
-import DevicesIcon from '@mui/icons-material/Devices';
-import SearchIcon from '@mui/icons-material/Search';
+import Image, { StaticImageData } from 'next/image';
+import AccessibilityNewIcon from '../../public/icons/universal-access.png';
+import SpeedIcon from '../../public/icons/performance.png';
+import DevicesIcon from '../../public/icons/responsive-design.png';
+import SearchIcon from '../../public/icons/seo.png';
 
 interface OfferCardProps {
   title: string;
   description: string;
-  Icon: React.ElementType;
+  iconSrc: StaticImageData;
 }
 
-const OfferCard: React.FC<OfferCardProps> = ({ title, description, Icon }) => {
+const OfferCard: React.FC<OfferCardProps> = ({ title, description, iconSrc }) => {
   return (
-    <Card sx={{ maxWidth: 345, textAlign: 'center', m: 2, backgroundColor: '#101010', color: 'white' }}>
-      <CardContent>
-        <Icon style={{ fontSize: 40, color: 'white' }} />
-        <Typography variant="h5" component="div">
+    <div className="h-screen">
+      <div className="max-w-xs text-center m-2 bg-gray-800 text-white p-4">
+        <div className="flex justify-center">
+          <Image src={iconSrc} alt={title} width={64} height={64} />
+        </div>
+        <h5 className="text-4xl font-anton my-2">
           {title}
-        </Typography>
-        <Typography variant="body2">
+        </h5>
+        <p>
           {description}
-        </Typography>
-      </CardContent>
-    </Card>
+        </p>
+      </div>
+    </div>
   );
 };
 
 const Offer: React.FC = () => {
   return (
     <>
-      <Typography variant="h4" component="h2" sx={{ textAlign: 'center', mt: 4, mb: 4 }}>
-        My expertise
-      </Typography>
-      <Grid container justifyContent="center">
+      <h2 className="text-6xl font-anton text-center mt-4 mb-4">
+        MY EXPERTISE
+      </h2>
+      <div className="flex justify-center flex-wrap">
         <OfferCard
-          title="Accessibility"
+          title="ACCESSIBILITY"
           description="Dedicated to creating inclusive web experiences that are accessible to all users, regardless of their abilities."
-          Icon={AccessibilityNewIcon}
+          iconSrc={AccessibilityNewIcon}
         />
         <OfferCard
-          title="Performance"
+          title="PERFORMANCE"
           description="Focused on optimizing web applications for speed and efficiency to enhance user experience and engagement."
-          Icon={SpeedIcon}
+          iconSrc={SpeedIcon}
         />
         <OfferCard
-          title="Responsive Design"
+          title="RESPONSIVE DESIGN"
           description="Expert in crafting websites that provide an optimal viewing experience across a wide range of devices."
-          Icon={DevicesIcon}
+          iconSrc={DevicesIcon}
         />
         <OfferCard
-          title="SEO Optimization"
+          title="SEO OPTIMIZATION"
           description="Skilled in optimizing websites to rank higher in search engine results, increasing visibility and traffic."
-          Icon={SearchIcon}
+          iconSrc={SearchIcon}
         />
         {/* Add more cards as needed */}
-      </Grid>
+      </div>
     </>
   );
 };

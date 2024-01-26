@@ -1,5 +1,4 @@
-import React, { useState, Fragment } from 'react';
-import { Card, CardContent, CardMedia, Typography, Modal, Box } from '@mui/material';
+import React, { useState } from 'react';
 
 // Define the type for project
 interface Project {
@@ -15,7 +14,6 @@ const projects: Project[] = [
 
 const Projects: React.FC = () => {
   const [open, setOpen] = useState(false);
-  // Initialize selectedProject with null and only render if it's not null
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   const handleClickOpen = (project: Project) => {
@@ -24,49 +22,37 @@ const Projects: React.FC = () => {
   };
 
   const handleClose = () => {
-    setSelectedProject(null); // Reset the selected project on close
+    setSelectedProject(null);
     setOpen(false);
   };
 
   return (
-    <Fragment>
-      <div style={{ overflowX: 'auto', display: 'flex', gap: '16px', padding: '16px' }}>
+    <>
+      <div className="flex overflow-x-auto gap-4 p-4">
         {projects.map((project, index) => (
-          <div key={index} style={{ flex: '0 0 auto' }} onClick={() => handleClickOpen(project)}>
-            <Card>
-              <CardMedia
-                component="img"
-                height="140"
-                image={project.imageUrl}
-                alt={project.title}
-              />
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                  {project.title}
-                </Typography>
-              </CardContent>
-            </Card>
+          <div key={index} className="flex-shrink-0" onClick={() => handleClickOpen(project)}>
+            <div className="max-w-xs bg-white shadow-lg">
+              <img src={project.imageUrl} alt={project.title} className="h-36 w-full object-cover" />
+              <div className="p-4">
+                <h5 className="text-lg font-semibold mb-2">{project.title}</h5>
+              </div>
+            </div>
           </div>
         ))}
       </div>
-      {selectedProject && (
-        <Modal
-          open={open}
-          onClose={handleClose}
-          aria-labelledby="project-details-title"
-          aria-describedby="project-details-description"
-        >
-          <Box>
-            <Typography id="project-details-title" variant="h6" component="h2">
+      {selectedProject && open && (
+        <div className={`fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-center items-center p-4 ${!open ? 'hidden' : ''}`} onClick={handleClose}>
+          <div className="bg-white p-6 rounded-lg shadow-lg" onClick={e => e.stopPropagation()}>
+            <h6 className="text-xl font-semibold mb-2" id="project-details-title">
               {selectedProject.title}
-            </Typography>
-            <Typography id="project-details-description" sx={{ mt: 2 }}>
+            </h6>
+            <p className="text-base" id="project-details-description">
               {selectedProject.description}
-            </Typography>
-          </Box>
-        </Modal>
+            </p>
+          </div>
+        </div>
       )}
-    </Fragment>
+    </>
   );
 };
 

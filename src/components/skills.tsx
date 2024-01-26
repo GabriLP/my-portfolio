@@ -1,5 +1,4 @@
 import React from 'react';
-import { Grid, Paper, Typography, Box } from '@mui/material';
 
 const skills = [
   'HTML', 'CSS', 'JavaScript', 'React', 'Next.js',
@@ -8,20 +7,18 @@ const skills = [
 
 const Skills: React.FC = () => {
   return (
-    <Box sx={{ flexGrow: 1, padding: 3 }}>
-      <Typography variant="h2" gutterBottom>
-        Technologies I use
-      </Typography>
-      <Grid container spacing={3}>
+    <div className="h-screen flex-grow p-3">
+      <h2 className="text-3xl font-bold mb-4">
+        MY TECH STACK
+      </h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
         {skills.map((skill, index) => (
-          <Grid item xs={12} sm={6} md={4} lg={3} key={index}>
-            <Paper elevation={3} sx={{ padding: 2, textAlign: 'center', backgroundColor: '#101010' }}>
-              <Typography variant="h6">{skill}</Typography>
-            </Paper>
-          </Grid>
+          <div key={index} className="bg-gray-800 p-2 text-center rounded shadow-lg">
+            <h6 className="text-lg">{skill}</h6>
+          </div>
         ))}
-      </Grid>
-    </Box>
+      </div>
+    </div>
   );
 };
 

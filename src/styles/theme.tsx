@@ -31,7 +31,43 @@ const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: 'PP Neue Machina, sans-serif',
+    // Default fontFamily is for body text
+    fontFamily: 'Inter, sans-serif', 
+
+    // Customization for headings using Anton
+    h1: {
+      fontFamily: 'Anton, sans-serif',
+      fontWeight: 400, 
+      fontSize: 'clamp(5rem, 9vw, 8rem)',
+    },
+    h2: {
+      fontFamily: 'Anton, sans-serif',
+      fontWeight: 400, 
+      fontSize: 'clamp(4rem, 8vw, 7rem)',
+    },
+    h3: {
+      fontFamily: 'Anton, sans-serif',
+      fontWeight: 400,
+      fontSize: 'clamp(3rem, 7vw, 6rem)',
+    },
+    h4: {
+      fontFamily: 'Anton, sans-serif',
+      fontWeight: 400,
+      fontSize: 'clamp(2rem, 6vw, 5rem)',
+    },
+    h5: {
+      fontFamily: 'Anton, sans-serif',
+      fontWeight: 400,
+      fontSize: 'clamp(1.5rem, 5vw, 3rem)',
+    },
+    body1: {
+      fontWeight: 300,
+      fontSize: 'clamp(0.85rem, 2vw, 1.25rem)',
+    },
+    body2: {
+      fontWeight: 300,
+      fontSize: 'clamp(0.6rem, 2vw, 0.875rem)',
+    },
   },
   components: {
     MuiCssBaseline: {
@@ -45,7 +81,7 @@ const theme = createTheme({
     MuiListItemButton: {
       styleOverrides: {
         root: {
-          fontFamily: 'PP Neue Machina, sans-serif',
+          fontFamily: 'Inter, sans-serif',
           '&:hover': {
             backgroundColor: '#e0e0e0', 
           },
