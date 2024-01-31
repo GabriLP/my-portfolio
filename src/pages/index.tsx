@@ -9,11 +9,11 @@ import Contact from '../components/contact';
 
 const Home: React.FC = () => {
   return (
-    <div>
+    <main>
       <Head>
         <html lang="en" />
-        <title>Gabriele La Piana | Front End Developer</title>
-        <meta name="description" content="Welcome to my Next.js portfolio, where I showcase my personal projects." />
+        <title>Gabriele La Piana — Front End Developer</title>
+        <meta name="description" content="Welcome to my portfolio, where I showcase my personal projects." />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -23,7 +23,7 @@ const Home: React.FC = () => {
       <Offer />
       <Skills />
       <Contact />
-    </div>
+    </main>
   );
 };
 
