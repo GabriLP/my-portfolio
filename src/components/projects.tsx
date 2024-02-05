@@ -1,4 +1,9 @@
+"use client";
+
 import React, { useState } from 'react';
+import { CardBody, CardContainer, CardItem } from "./ui/3d-card";
+import Image from 'next/image';
+
 
 // Extended type for project
 interface Project {
@@ -14,80 +19,81 @@ const projects: Project[] = [
   {
     title: 'GlobalEmissions',
     description: 'A web application that provides users with the ability to analyze global emissions data based on country selection, geographical coordinates, and specific pollutants.',
-    imageUrl: 'url-to-your-image-for-project-one',
+    imageUrl: '/projects/globemiss.png',
     repositoryUrl: 'https://github.com/GabriLP/carbon-emissions-app',
     demoUrl: 'https://carbon-emissions-app.vercel.app/',
   },
   {
     title: 'restful mindspace',
     description: 'A mindfulness application designed to help you relax and meditate with customizable timers and soothing sounds.',
-    imageUrl: 'url-to-your-image-for-project-two',
+    imageUrl: '/projects/restfulmindspace.png',
     repositoryUrl: 'https://github.com/GabriLP/meditation-app',
     demoUrl: 'https://gabrilp.github.io/meditation-app/',
   },
   {
     title: 'MeteOggi',
     description: 'A web application that allows you to check the current weather and forecast for any location.',
-    imageUrl: 'url-to-your-image-for-project-three',
+    imageUrl: '/projects/meteoggi.png',
     repositoryUrl: 'https://github.com/GabriLP/MeteOggi',
     demoUrl: 'https://gabrilp.github.io/MeteOggi/',
   },
   {
     title: 'CountMeIn',
     description: 'A straightforward counter application that lets you easily increase or decrease the count using intuitive buttons or keyboard keys.',
-    imageUrl: 'url-to-your-image-for-project-three',
+    imageUrl: '/projects/countmein.png',
     repositoryUrl: 'https://github.com/GabriLP/counter-app',
     demoUrl: 'https://gabrilp.github.io/counter-app/',
   },
 ];
 
 const Projects: React.FC = () => {
-  const [open, setOpen] = useState(false);
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-
-  const handleClickOpen = (project: Project) => {
-    setSelectedProject(project);
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setSelectedProject(null);
-    setOpen(false);
-  };
 
   return (
     <>
-      <div className="flex overflow-x-auto gap-4 p-4">
+      <section className="grid grid-cols-1 md:grid-cols-2 md:gap-16 gap-4 p-4">
         {projects.map((project, index) => (
-          <div key={index} className="flex-shrink-0 h-screen" onClick={() => handleClickOpen(project)}>
-            <div className="max-w-xs bg-white shadow-lg">
-              <img src={project.imageUrl} alt={project.title} className="h-36 w-full object-cover" />
-              <div className="p-4">
-                <h5 className="text-lg font-semibold mb-2">{project.title}</h5>
+          <CardContainer key={index} className="inter-var">
+            <CardBody className="bg-gray-50 relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-full h-auto rounded-xl p-6 border">
+              <CardItem translateZ="50" className="text-3xl font-bold text-neutral-600 dark:text-white">
+                {project.title}
+              </CardItem>
+              <CardItem
+                as="p"
+                translateZ="60"
+                className="text-neutral-500 text-sm max-w-sm mt-2 dark:text-neutral-300"
+              >
+                {project.description}
+              </CardItem>
+              <CardItem translateZ="100" className="w-full mt-4">
+                <Image
+                  src={project.imageUrl}
+                  height="1000"
+                  width="1000"
+                  objectFit="cover"
+                  className="h-auto w-full object-cover rounded-xl group-hover/card:shadow-xl"
+                  alt={project.title}
+                />
+              </CardItem>
+              <div className="flex justify-between items-center mt-20">
+                <a href={project.repositoryUrl} target="_blank" rel="noopener noreferrer"
+                  translateZ={20}
+                  as="button"
+                  className="px-4 py-2 rounded-xl text-xs font-normal dark:text-white"
+                >
+                  Repository →
+                </a>
+                <a href={project.demoUrl} target="_blank" rel="noopener noreferrer"
+                  translateZ={20}
+                  as="button"
+                  className="px-4 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs font-bold"
+                >
+                  Demo
+                </a>
               </div>
-            </div>
-          </div>
+            </CardBody>
+          </CardContainer>
         ))}
-      </div>
-      {selectedProject && open && (
-        <div className={`fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-center items-center p-4 ${!open ? 'hidden' : ''}`} onClick={handleClose}>
-          <div className="bg-white p-6 rounded-lg shadow-lg" onClick={e => e.stopPropagation()}>
-            <h6 className="text-xl font-semibold mb-2" id="project-details-title">
-              {selectedProject.title}
-            </h6>
-            <img src={selectedProject.imageUrl} alt={selectedProject.title} className="w-full h-auto mb-4" />
-            <p className="text-base mb-4" id="project-details-description">
-              {selectedProject.description}
-            </p>
-            <a href={selectedProject.repositoryUrl} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline mr-4">
-              Repository
-            </a>
-            <a href={selectedProject.demoUrl} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
-              Demo
-            </a>
-          </div>
-        </div>
-      )}
+      </section>
     </>
   );
 };

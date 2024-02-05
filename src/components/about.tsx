@@ -2,9 +2,9 @@ import React from 'react';
 
 const About: React.FC = () => {
   return (
-    <section id='about' className="h-screen flex flex-col p-5">
-      <h2 className="text-heading-1 text-6xl font-anton mb-4">
-        ABOUT ME
+    <section id='about' className="h-screen flex flex-col">
+      <h2 className="text-heading-2 text-6xl font-anton mb-4">
+        About me
       </h2>
       <p className="text-body-1 flex justify-end"> 
         I started web development over a year ago and love how it blends thinking and creativity. <br />

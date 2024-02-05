@@ -7,7 +7,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        'anton': ['Anton', 'sans-serif'],
+        'anton': ['Bricolage Grotesque', 'sans-serif'],
         'sans': ['Inter', 'sans-serif'],
       },
       colors: {

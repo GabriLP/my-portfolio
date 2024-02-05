@@ -32,27 +32,27 @@ const OfferCard: React.FC<OfferCardProps> = ({ title, description, iconSrc }) =>
 const Offer: React.FC = () => {
   return (
     <>
-      <h2 className="text-6xl font-anton text-center mt-4 mb-4">
-        MY EXPERTISE
+      <h2 className="text-heading-2 font-anton text-center mt-4 mb-4">
+        My expertise
       </h2>
       <div className="flex justify-center flex-wrap">
         <OfferCard
-          title="ACCESSIBILITY"
+          title="Accessibility"
           description="Dedicated to creating inclusive web experiences that are accessible to all users, regardless of their abilities."
           iconSrc={AccessibilityNewIcon}
         />
         <OfferCard
-          title="PERFORMANCE"
+          title="Performance"
           description="Focused on optimizing web applications for speed and efficiency to enhance user experience and engagement."
           iconSrc={SpeedIcon}
         />
         <OfferCard
-          title="RESPONSIVE DESIGN"
+          title="Responsive Design"
           description="Expert in crafting websites that provide an optimal viewing experience across a wide range of devices."
           iconSrc={DevicesIcon}
         />
         <OfferCard
-          title="SEO OPTIMIZATION"
+          title="SEO Optimization"
           description="Skilled in optimizing websites to rank higher in search engine results, increasing visibility and traffic."
           iconSrc={SearchIcon}
         />
