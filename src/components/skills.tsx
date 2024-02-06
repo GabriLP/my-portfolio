@@ -1,57 +1,53 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, RefObject } from 'react';
 
-const Skills: React.FC = () => {
+const useMarquee = (ref: RefObject<HTMLDivElement>, initialSpeed: number) => {
+  const speedRef = useRef<number>(initialSpeed);
+
+  useEffect(() => {
+    const element = ref.current;
+    if (!element) return;
+
+    let xPos = 0;
+    const animate = () => {
+      xPos -= speedRef.current;
+      if (-xPos >= element.scrollWidth / 2) xPos = 0;
+      element.style.transform = `translateX(${xPos}px)`;
+      requestAnimationFrame(animate);
+    };
+
+    requestAnimationFrame(animate);
+
+    const handleMouseEnter = () => speedRef.current = 0.25;
+    const handleMouseLeave = () => speedRef.current = initialSpeed;
+
+    element.addEventListener('mouseenter', handleMouseEnter);
+    element.addEventListener('mouseleave', handleMouseLeave);
+
+    return () => {
+      element.removeEventListener('mouseenter', handleMouseEnter);
+      element.removeEventListener('mouseleave', handleMouseLeave);
+    };
+  }, [ref, initialSpeed]); // React guarantees ref object stability
+};
+
+const Skills = () => {
   const skills = [
     'HTML', 'CSS', 'JavaScript', 'React', 'Next.js',
     'Redux', 'Bootstrap', 'Tailwind CSS', 'Material-UI',
   ];
 
-  // Concatenate skills with separators to create a long string
+  const marqueeRef = useRef<HTMLDivElement>(null);
+  useMarquee(marqueeRef, 0.5); // Custom hook for marquee animation
+
   const skillSet = skills.join(' ✱ ') + ' ✱ ';
 
-  // Use useRef to type the ref with HTMLElement
-  const marqueeRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    // Define animation inside useEffect to ensure it's typed correctly
-    let animation: Animation | null = null;
-
-    if (marqueeRef.current) {
-      const keyframes = [
-        { transform: 'translateX(0%)' },
-        { transform: 'translateX(-100%)' }
-      ];
-      const options = {
-        duration: 20000, // Duration can be adjusted
-        iterations: Infinity,
-      };
-
-      // Use the animate method on the current ref, checking for its existence
-      animation = marqueeRef.current.animate(keyframes, options);
-    }
-
-    const handleMouseEnter = () => animation?.updatePlaybackRate(0.5);
-    const handleMouseLeave = () => animation?.updatePlaybackRate(1);
-
-    // Add event listeners if the ref is current
-    marqueeRef.current?.addEventListener('mouseenter', handleMouseEnter);
-    marqueeRef.current?.addEventListener('mouseleave', handleMouseLeave);
-
-    // Cleanup function to remove event listeners and cancel the animation
-    return () => {
-      marqueeRef.current?.removeEventListener('mouseenter', handleMouseEnter);
-      marqueeRef.current?.removeEventListener('mouseleave', handleMouseLeave);
-      animation?.cancel();
-    };
-  }, []);
-
   return (
-    <div className="w-full overflow-hidden">
+    <section className="w-full h-screen overflow-hidden">
       <h2 className="text-heading-2 font-anton mb-4 text-center">My Tech Stack</h2>
-      <div ref={marqueeRef} className="whitespace-nowrap text-heading-5 font-anton">
-        {skillSet.repeat(20)} {/* Repeat the skill set to ensure it's long enough */}
+      <div ref={marqueeRef} className="neon-sign flicker whitespace-nowrap text-heading-5 font-anton">
+        {skillSet.repeat(2)} {/* Duplication for seamless loop */}
       </div>
-    </div>
+    </section>
   );
 };
 

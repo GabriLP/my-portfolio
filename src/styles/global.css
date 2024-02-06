@@ -4,13 +4,6 @@
 @tailwind utilities;
  
 @layer base {
-
-  .marquee {
-    overflow: hidden;
-    white-space: nowrap;
-    /* Set up other styles as needed */
-  }
-
   :root {
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;

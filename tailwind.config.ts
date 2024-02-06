@@ -18,40 +18,33 @@ const config = {
       },
     },
     extend: {
+      fontFamily: {
+        'anton': ['Bricolage Grotesque', 'sans-serif'],
+        'sans': ['Inter', 'sans-serif'],
+      },
+      fontSize: {
+        'heading-1': 'clamp(5rem, 7vw, 8rem)',
+        'heading-2': 'clamp(4rem, 8vw, 7rem)',
+        'heading-3': 'clamp(3rem, 7vw, 6rem)',
+        'heading-4': 'clamp(2rem, 6vw, 5rem)',
+        'heading-5': 'clamp(1.5rem, 5vw, 3rem)',
+        'body-1': 'clamp(1rem, 2vw, 1.5rem)',
+        'body-2': 'clamp(0.85rem, 2vw, 1.25rem)',
+        'body-3': 'clamp(0.6rem, 2vw, 0.875rem)',
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
+        background: "#101010", // Combined
         foreground: "hsl(var(--foreground))",
-        primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
-        },
-        secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
-        },
-        destructive: {
-          DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))",
-        },
-        muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
-        },
-        accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
-        },
-        popover: {
-          DEFAULT: "hsl(var(--popover))",
-          foreground: "hsl(var(--popover-foreground))",
-        },
-        card: {
-          DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))",
-        },
+        text: "#FFFFFF", // Combined
+        primary: '#4CAF50', // Overridden with direct hex value
+        secondary: '#2196F3', // Overridden with direct hex value
+        error: '#F44336', // Added
+        accent: '#795548', // Overridden with direct hex value
+        // Other custom colors from the first config
+        // ...
       },
       borderRadius: {
         lg: "var(--radius)",

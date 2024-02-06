@@ -9,7 +9,7 @@ import Contact from '../components/contact';
 
 const Home: React.FC = () => {
   return (
-    <main className='p-[4%] bg-background text-text'>
+    <main className='p-[4%] bg-background text-white'>
       <Head>
         <html lang="en" />
         <title>Gabriele La Piana — Front End Developer</title>
