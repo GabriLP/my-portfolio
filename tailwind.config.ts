@@ -30,13 +30,13 @@ const config = {
         'heading-5': 'clamp(1.5rem, 5vw, 3rem)',
         'body-1': 'clamp(1rem, 2vw, 1.5rem)',
         'body-2': 'clamp(0.85rem, 2vw, 1.25rem)',
-        'body-3': 'clamp(0.6rem, 2vw, 0.875rem)',
+        'body-3': 'clamp(0.6rem, 2vw, 1rem)',
       },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
-        background: "#101010", // Combined
+        background: "#212121", // Combined
         foreground: "hsl(var(--foreground))",
         text: "#FFFFFF", // Combined
         primary: '#4CAF50', // Overridden with direct hex value
