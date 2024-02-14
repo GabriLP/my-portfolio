@@ -2,7 +2,7 @@ import React from 'react';
 
 const About: React.FC = () => {
   return (
-    <section id='about' className="h-screen flex flex-col">
+    <section id='about' className="h-screen flex flex-col p-[4%]">
       <h2 className="text-heading-2 text-6xl font-anton mb-4">
         About me
       </h2>

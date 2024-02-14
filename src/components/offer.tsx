@@ -32,8 +32,8 @@ const expertiseAreas: ExpertiseArea[] = [
 
 const Offer: React.FC = () => {
   return (
-    <section className="h-screen">
-      <h2 className="text-heading-2 font-anton text-center mt-4 mb-4">
+    <section className="h-[150vh] p-[4%]">
+      <h2 className="text-heading-2 font-anton font-semibold text-center mt-4 mb-4">
         My expertise
       </h2>
       <Accordion type="single" collapsible>

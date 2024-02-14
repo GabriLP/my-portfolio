@@ -1,16 +1,43 @@
-@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque&family=Inter:wght@200;300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Inter:wght@100..900&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 
 main {
   background-image: url('/background/image-from-rawpixel-id-12504330-png.avif');
   background-position: center center;
 }
 
-.perspective {
-  perspective: 500px; /* Adjust the value to control the depth of the 3D effect */
+.rotate-symbol {
+  display: inline-block; /* Allows rotation */
+  color: #ff6347; /* Example color: tomato; adjust as needed */
+  animation: rotate-symbol 4s linear infinite;
+}
+
+
+@keyframes rotate-symbol {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+::-webkit-scrollbar {
+  width: 12px; /* Adjust the width of the scrollbar */
+  height: 12px; /* Adjust the height of the horizontal scrollbar */
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background-color: rgb(59, 59, 59); /* Color of the scrollbar */
+  border-radius: 6px; /* Full border radius */
+}
+
+/* Optional: Style the scrollbar track */
+::-webkit-scrollbar-track {
+  background: rgb(31, 31, 31); /* Color of the background of the scrollbar track */
 }
 
 @layer base {

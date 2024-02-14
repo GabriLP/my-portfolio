@@ -39,13 +39,17 @@ const Skills = () => {
   const marqueeRef = useRef<HTMLDivElement>(null);
   useMarquee(marqueeRef, 0.5); // Custom hook for marquee animation
 
-  const skillSet = skills.join(' ✱ ') + ' ✱ ';
+  const skillSet = skills.map((skill, index) => (
+    <React.Fragment key={index}>
+      {skill} <span className="rotate-symbol text-different-color">❋</span>{' '}
+    </React.Fragment>
+  ));
 
   return (
     <section className="w-full h-screen overflow-hidden">
       <h2 className="text-heading-2 font-anton mb-4 text-center">My Tech Stack</h2>
       <div ref={marqueeRef} className="neon-sign flicker whitespace-nowrap text-heading-5 font-anton">
-        {skillSet.repeat(2)} {/* Duplication for seamless loop */}
+        {skillSet} {skillSet} {/* Render the skill set twice for seamless loop */}
       </div>
     </section>
   );
