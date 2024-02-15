@@ -1,0 +1,65 @@
+import React from 'react';
+import { motion, useAnimation } from 'framer-motion';
+
+type AnimatedHeadingProps = {
+  className?: string;
+  children: React.ReactNode;
+  tag?: 'h1' | 'h2' | 'h3' | 'h4';
+};
+
+const hoverSpring = {
+  type: "spring",
+  stiffness: 250,
+  damping: 15,
+  mass: 0.8,
+  velocity: 2,
+};
+
+const leaveSpring = {
+  type: "spring",
+  stiffness: 100,
+  damping: 4,
+  mass: 0.3,
+  velocity: -2,
+};
+
+const useHoverAnimation = () => {
+  const controls = useAnimation();
+
+  const handleStart = () => {
+    controls.start({
+      fontWeight: 800,
+      transition: hoverSpring,
+    });
+  };
+
+  const handleEnd = () => {
+    controls.start({
+      fontWeight: 400,
+      transition: leaveSpring,
+    });
+  };
+
+  return { controls, handleStart, handleEnd };
+};
+
+const AnimatedHeading: React.FC<AnimatedHeadingProps> = ({ className, children, tag = 'h1' }) => {
+  const { controls, handleStart, handleEnd } = useHoverAnimation();
+  const MotionComponent = motion[tag];
+
+  return (
+    <MotionComponent
+      className={className}
+      initial={{ fontWeight: 400 }}
+      animate={controls}
+      onMouseEnter={handleStart}
+      onMouseLeave={handleEnd}
+      onTouchStart={handleStart}
+      onTouchEnd={handleEnd}
+    >
+      {children}
+    </MotionComponent>
+  );
+};
+
+export default AnimatedHeading;

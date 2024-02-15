@@ -14,14 +14,11 @@ const BackgroundAnimation = () => {
       }
     };
 
-    // Change the background position every 5 seconds
     const intervalId = setInterval(moveBackground, 100);
 
-    // Cleanup interval on component unmount
     return () => clearInterval(intervalId);
   }, []);
 
-  // No need to return a JSX element if you're only manipulating the <main> element
   return null;
 };
 
