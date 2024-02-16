@@ -63,7 +63,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
                 </a>
                 </div>
             </div>
-            <div className="flex justify-center items-center md:w-2/3 relative overflow-hidden">
+            <div className="flex justify-center items-center md:w-[80%] relative overflow-hidden">
                 <div style={{ width: '100%', paddingTop: '65%', position: 'relative' }}>
                 <Image
                     src={project.imageUrl}
