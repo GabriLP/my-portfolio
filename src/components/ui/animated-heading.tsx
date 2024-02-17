@@ -1,10 +1,14 @@
 import React from 'react';
+import { useEffect } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 
 type AnimatedHeadingProps = {
   className?: string;
   children: React.ReactNode;
   tag?: 'h1' | 'h2' | 'h3' | 'h4';
+  variants?: any; // Might want to define a more precise type for variants
+  initial?: string;
+  animate?: string;
 };
 
 const hoverSpring = {
@@ -23,8 +27,16 @@ const leaveSpring = {
   velocity: -2,
 };
 
-const useHoverAnimation = () => {
+const useHoverAnimation = (initial: any, animate: any) => {
   const controls = useAnimation();
+
+  useEffect(() => {
+    controls.set(initial);
+    
+    if (animate) {
+      controls.start(animate);
+    }
+  }, [controls, initial, animate]);
 
   const handleStart = () => {
     controls.start({
@@ -43,15 +55,16 @@ const useHoverAnimation = () => {
   return { controls, handleStart, handleEnd };
 };
 
-const AnimatedHeading: React.FC<AnimatedHeadingProps> = ({ className, children, tag = 'h1' }) => {
-  const { controls, handleStart, handleEnd } = useHoverAnimation();
+const AnimatedHeading: React.FC<AnimatedHeadingProps> = ({ className, children, tag = 'h1', variants, initial, animate }) => {
+  const { controls, handleStart, handleEnd } = useHoverAnimation(initial, animate);
   const MotionComponent = motion[tag];
 
   return (
     <MotionComponent
       className={className}
-      initial={{ fontWeight: 400 }}
       animate={controls}
+      initial={initial} // Now using the prop
+      variants={variants} // Now using the prop
       onMouseEnter={handleStart}
       onMouseLeave={handleEnd}
       onTouchStart={handleStart}

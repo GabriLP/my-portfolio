@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
+import AnimatedHeading from './ui/animated-heading';
 
 interface WordWithKey {
   word: string;
@@ -32,7 +33,7 @@ const Landing: React.FC = () => {
   };
 
   const itemVariants = {
-    hidden: { y: 200 }, // Start lower to slide up without affecting opacity
+    hidden: { y: 300 },
     visible: {
       y: 0,
       transition: {
@@ -47,7 +48,7 @@ const Landing: React.FC = () => {
     visible: {
       y: 0,
       opacity: 1,
-      transition: { duration: 0.5, ease: "easeOut" }
+      transition: { duration: 0.5, ease: "easeIn" }
     }
   };
 
@@ -80,11 +81,14 @@ const Landing: React.FC = () => {
   >
       <motion.div
         className="w-full text-center flex flex-col gap-y-3"
+      >
+        <AnimatedHeading 
+        className="text-heading-1 text-9xl font-anton mb-4 flex flex-col" 
+        tag="h1"
         initial="hidden"
         animate="visible"
         variants={containerVariants}
-      >
-        <h1 className="text-heading-1 text-9xl font-anton mb-4 flex flex-col">
+        >
           <div className="lg:pl-[15%] text-left overflow-hidden">
             {headerWords1.map(({ word, key }) => (
               <motion.span key={key} className="inline-block" variants={itemVariants}>
@@ -99,20 +103,18 @@ const Landing: React.FC = () => {
               </motion.span>
             ))}
           </div>
-        </h1>
-        <AnimatePresence>
+        </AnimatedHeading>
           {headerAnimationComplete && (
             <motion.p
               className="text-body-1 text-text mt-4"
               variants={paragraphVariants}
               initial="hidden"
-              animate="visible"
               exit="hidden"
+              animate= {headerAnimationComplete ? "visible" : "hidden"}
             >
               Front-End Developer based in Palermo, Italy.
             </motion.p>
           )}
-        </AnimatePresence>
       </motion.div>
     </motion.section>
   );
