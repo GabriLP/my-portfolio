@@ -6,6 +6,8 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import AnimatedHeading from './ui/animated-heading';
+import AnimatedText from './ui/animated-words';
+import AnimatedContent from './ui/animated-content';
 
 interface ExpertiseArea {
   title: string;
@@ -36,10 +38,11 @@ const Offer: React.FC = () => {
     <section className="h-[150vh] p-[4%]">
       <AnimatedHeading
         tag='h2'
-        className="text-heading-2 font-anton font-semibold text-center mt-4 mb-4"
+        className="text-heading-2 font-anton font-semibold text-center mt-4 mb-4 overflow-hidden"
       >
-        My expertise
+      <AnimatedText text='My expertise' split={true} />
       </AnimatedHeading>
+      <AnimatedContent delay={1}>
       <Accordion type="single" collapsible>
         {expertiseAreas.map((area, index) => (
           <AccordionItem key={index} value={`item-${index}`}>
@@ -52,6 +55,7 @@ const Offer: React.FC = () => {
           </AccordionItem>
         ))}
       </Accordion>
+      </AnimatedContent>
     </section>
   );
 };

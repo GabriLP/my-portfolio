@@ -48,7 +48,7 @@ const Landing: React.FC = () => {
     visible: {
       y: 0,
       opacity: 1,
-      transition: { duration: 0.5, ease: "easeIn" }
+      transition: { duration: 0.5, ease: "easeOut" }
     }
   };
 
@@ -97,7 +97,7 @@ const Landing: React.FC = () => {
             ))}
           </div>
           <div className="text-left lg:pr-[15%] lg:text-right overflow-hidden">
-            {headerWords2.map(({ word, key }, index) => (
+            {headerWords2.map(({ word, key }) => (
               <motion.span key={key} className="inline-block" variants={itemVariants}>
                 {word}&nbsp;
               </motion.span>

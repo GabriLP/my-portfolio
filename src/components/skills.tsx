@@ -1,5 +1,7 @@
 import React, { useRef, useEffect, RefObject } from 'react';
 import AnimatedHeading from './ui/animated-heading';
+import AnimatedText from './ui/animated-words';
+import AnimatedContent from './ui/animated-content';
 
 const useMarquee = (ref: RefObject<HTMLDivElement>, initialSpeed: number) => {
   const speedRef = useRef<number>(initialSpeed);
@@ -50,13 +52,15 @@ const Skills = () => {
     <section className="w-full h-screen overflow-hidden">
       <AnimatedHeading 
         tag='h2'
-        className="text-heading-2 font-anton mb-4 text-center"
+        className="text-heading-2 font-anton mb-4 text-center overflow-hidden"
         >
-          My Tech Stack
+      <AnimatedText text='My tech stack' split={true} />
       </AnimatedHeading>
+      <AnimatedContent delay={1}>
       <div ref={marqueeRef} className="neon-sign flicker whitespace-nowrap text-heading-5 font-anton">
         {skillSet} {skillSet} {/* Render the skill set twice for seamless loop */}
       </div>
+      </AnimatedContent>
     </section>
   );
 };
