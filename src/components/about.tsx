@@ -1,20 +1,27 @@
 import React from 'react';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
+import AnimatedHeading from './ui/animated-heading';
+import AnimatedText from './ui/animated-words';
+import AnimatedContent from './ui/animated-content';
 
 const About: React.FC = () => {
   return (
-    <Box sx={{ height: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', padding: 3 }}>
-      <Typography variant="h4" component="h2" gutterBottom>
-        About me
-      </Typography>
-      <Typography variant="body1"> 
-        I have 1+ year of experience in the industry, working with technologies like React, Next.js, TypeScript, and Redux. 
-        I&apos;m constantly learning and staying up-to-date with the latest technologies in web development.
-        I am committed to delivering high-quality code with meticulous attention to detail, ensuring every project is robust and scalable.
-      </Typography>
-      {/* You can add more personal details, experiences, and skills here */}
-    </Box>
+    <section id='about' className="h-screen flex flex-col p-[4%]">
+      <AnimatedHeading
+        tag='h2' 
+        className="text-heading-2 text-6xl font-anton mb-4 overflow-hidden"
+      >
+      <AnimatedText text='About me' split={true} />
+      </AnimatedHeading>
+      <AnimatedContent delay={1}>
+      <p className="text-body-1 text-gray-300 flex justify-end"> 
+        I started web development over a year ago and love how it blends thinking and creativity. <br />
+
+        What excites me most about this field is the ability to positively impact both businesses and end-users. <br />
+
+        Continually updating my skills with the latest technologies, I&apos;m dedicated to crafting high-quality, clean, detail-oriented code.
+      </p>
+      </AnimatedContent>
+    </section>
   );
 };
 

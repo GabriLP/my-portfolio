@@ -1,16 +1,17 @@
 import React from 'react';
-import { ThemeProvider } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
-import theme from '../style/theme';
-import '../pages/global.css';
-import { AppProps } from 'next/app'; // Import the AppProps type
+import { AppProps } from 'next/app';
+import { ReactLenis } from '@studio-freight/react-lenis';
+import '../styles/global.css'
+import BackgroundAnimation from '@/components/ui/background-animation';
 
 const App: React.FC<AppProps> = ({ Component, pageProps }) => {
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
+    <>
+        <ReactLenis root>
+      <BackgroundAnimation />
       <Component {...pageProps} />
-    </ThemeProvider>
+        </ReactLenis>
+    </>
   );
 };
 
