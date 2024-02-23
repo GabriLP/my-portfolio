@@ -6,7 +6,7 @@ type AnimatedHeadingProps = {
   className?: string;
   children: React.ReactNode;
   tag?: 'h1' | 'h2' | 'h3' | 'h4';
-  variants?: any; // Might want to define a more precise type for variants
+  variants?: any; 
   initial?: string;
   animate?: string;
 };
@@ -51,7 +51,6 @@ const useHoverAnimation = (initial: any, animate: any) => {
       transition: leaveSpring,
     });
   };
-
   return { controls, handleStart, handleEnd };
 };
 
@@ -63,8 +62,8 @@ const AnimatedHeading: React.FC<AnimatedHeadingProps> = ({ className, children, 
     <MotionComponent
       className={className}
       animate={controls}
-      initial={initial} // Now using the prop
-      variants={variants} // Now using the prop
+      initial={initial}
+      variants={variants} 
       onMouseEnter={handleStart}
       onMouseLeave={handleEnd}
       onTouchStart={handleStart}
