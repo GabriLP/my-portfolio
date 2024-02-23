@@ -8,11 +8,11 @@ const About: React.FC = () => {
     <section id='about' className="h-screen flex flex-col p-[4%]">
       <AnimatedHeading
         tag='h2' 
-        className="text-heading-2 text-6xl font-anton mb-4 overflow-hidden"
+        className="text-heading-2 text-6xl font-anton mb-4 overflow-hidden py-8"
       >
       <AnimatedText text='About me' split={true} />
       </AnimatedHeading>
-      <AnimatedContent delay={1}>
+      <AnimatedContent delay={0.7}>
       <p className="text-body-1 text-gray-300 flex justify-end"> 
         I started web development over a year ago and love how it blends thinking and creativity. <br />
 

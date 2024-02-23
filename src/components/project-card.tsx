@@ -44,7 +44,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             <div className="flex flex-col justify-center space-y-4">
                 <h3 className="text-heading-3 font-anton pt-4">{project.title}</h3>
                 <p className="text-body-2 text-gray-300">{project.description}</p>
-                <div className="flex gap-4">
+                <div className="flex gap-4 z-10">
                 <a
                     href={project.repositoryUrl}
                     target="_blank"

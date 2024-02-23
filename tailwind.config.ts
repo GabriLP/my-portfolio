@@ -38,13 +38,11 @@ const config = {
         ring: "hsl(var(--ring))",
         background: '#212121',
         foreground: "hsl(var(--foreground))",
-        text: "#FFFFFF", // Combined
-        primary: '#4CAF50', // Overridden with direct hex value
-        secondary: '#2196F3', // Overridden with direct hex value
-        error: '#F44336', // Added
-        accent: '#795548', // Overridden with direct hex value
-        // Other custom colors from the first config
-        // ...
+        text: "#FFFFFF",
+        primary: '#4CAF50',
+        secondary: '#2196F3',
+        error: '#F44336',
+        accent: '#795548',
       },
       borderRadius: {
         lg: "var(--radius)",

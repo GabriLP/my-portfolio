@@ -24,23 +24,21 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({ text, split = true }) => {
     visible: {
       transition: {
         staggerChildren: 0.1,
-        delay: 0.2,
       },
     },
   };
 
   const itemVariants = {
-    hidden: { y: 150 },
+    hidden: { y: 300 },
     visible: {
       y: 0,
       transition: {
-        duration: 0.5,
+        duration: 0.4,
         ease: "easeOut",
       },
     },
   };
 
-  // Always split words for animation, but manage how they're displayed based on `split`
   const words = splitWords(text);
 
   return (
