@@ -66,7 +66,7 @@ const Landing: React.FC = () => {
         className="w-full text-center flex flex-col"
       >
         <AnimatedHeading 
-        className="text-heading-1 text-9xl font-anton mb-4 flex flex-col" 
+        className="unselectable text-heading-1 text-9xl font-anton mb-4 flex flex-col" 
         tag="h1"
         initial="hidden"
         animate="visible"

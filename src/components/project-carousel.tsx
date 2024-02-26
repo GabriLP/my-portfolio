@@ -58,11 +58,11 @@ const containerVariants = {
 const ProjectsCarousel: React.FC = () => {
   const targetRef = useRef<HTMLDivElement | null>(null);
   const { scrollYProgress } = useScroll({ target: targetRef });
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-305%"]);
+  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-303%"]);
 
 
   return (
-    <section ref={targetRef} className="relative h-[500vh]">
+    <section ref={targetRef} className="relative h-[350vh]">
       <div className=" px-[4%] sticky top-0 flex items-center overflow-hidden">
         <motion.div style={{ x }} className="flex gap-8 pr-[6%] md:pr-3" variants={containerVariants} initial="hidden" animate="show">
           {projects.map((project, index) => (

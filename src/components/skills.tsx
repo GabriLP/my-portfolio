@@ -13,29 +13,36 @@ const useMarquee = (
   useEffect(() => {
     const element = ref.current;
     if (!element) return;
-
+  
+    // Measure the width of a single set of content for accurate reset calculation
+    const contentWidth = element.scrollWidth / 2; 
     let xPos = 0;
+    const update = () => {
+      requestAnimationFrame(animate); // Continue the animation loop
+    };
+  
     const animate = () => {
       xPos += direction === 'left' ? -speedRef.current : speedRef.current;
-      if (direction === 'left' && -xPos >= element.scrollWidth / 2) xPos = 0;
-      if (direction === 'right' && xPos >= 0) xPos = -element.scrollWidth / 2;
+      // Reset based on the full width of the original content
+      if (direction === 'left' && -xPos >= contentWidth) xPos = 0;
+      if (direction === 'right' && xPos >= 0) xPos = -contentWidth;
       element.style.transform = `translateX(${xPos}px)`;
-      requestAnimationFrame(animate);
+      update();
     };
-
-    requestAnimationFrame(animate);
-
-    const handleMouseEnter = () => speedRef.current = 0.15;
-    const handleMouseLeave = () => speedRef.current = initialSpeed;
-
+  
+    update(); // Start the animation
+  
+    const handleMouseEnter = () => speedRef.current = speedRef.current / 3; // Slow down
+    const handleMouseLeave = () => speedRef.current = initialSpeed; // Resume original speed
+  
     element.addEventListener('mouseenter', handleMouseEnter);
     element.addEventListener('mouseleave', handleMouseLeave);
-
+  
     return () => {
       element.removeEventListener('mouseenter', handleMouseEnter);
       element.removeEventListener('mouseleave', handleMouseLeave);
     };
-  }, [ref, initialSpeed, direction]); // React guarantees ref object stability
+  }, [ref, initialSpeed, direction]);
 };
 
 const Skills = () => {
@@ -52,8 +59,8 @@ const Skills = () => {
   const marqueeRef1 = useRef<HTMLDivElement>(null);
   const marqueeRef2 = useRef<HTMLDivElement>(null);
 
-  useMarquee(marqueeRef1, 0.3, 'left');
-  useMarquee(marqueeRef2, 0.3, 'right');
+  useMarquee(marqueeRef1, 0.35, 'left');
+  useMarquee(marqueeRef2, 0.35, 'right');
 
   const renderSkills = (skills: string[]) => skills.map((skill, index) => (
     <React.Fragment key={index}>
@@ -65,7 +72,7 @@ const Skills = () => {
     <section className="w-full h-screen overflow-hidden p-[4%]">
       <AnimatedHeading 
         tag='h2'
-        className="text-heading-2 font-anton mb-4 py-8 text-center overflow-hidden"
+        className="unselectable text-heading-2 font-anton mb-4 py-8 text-center overflow-hidden"
         >
       <AnimatedText text='Which tools I use' split={true} />
       </AnimatedHeading>

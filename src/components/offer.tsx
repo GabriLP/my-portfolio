@@ -38,7 +38,7 @@ const Offer: React.FC = () => {
     <section className="h-[120vh] p-[4%]">
       <AnimatedHeading
         tag='h2'
-        className="text-heading-2 font-anton font-semibold text-center mt-4 mb-4 py-8 overflow-hidden"
+        className="unselectable text-heading-2 font-anton text-center mt-4 mb-4 py-8 overflow-hidden"
       >
       <AnimatedText text='What I focus on' split={true} />
       </AnimatedHeading>
