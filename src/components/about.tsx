@@ -8,7 +8,7 @@ const About: React.FC = () => {
     <section id='about' className="h-screen flex flex-col p-[4%]">
       <AnimatedHeading
         tag='h2' 
-        className="text-heading-2 text-6xl font-anton mb-4 overflow-hidden py-8"
+        className="unselectable text-heading-2 text-6xl font-anton mb-4 overflow-hidden py-8"
       >
       <AnimatedText text='About me' split={true} />
       </AnimatedHeading>

@@ -10,11 +10,6 @@ import Contact from '../components/contact';
 const Home: React.FC = () => {
   return (
     <main className='bg-background text-white'>
-      <Head>
-        <title>Gabriele La Piana — Front End Developer</title>
-        <meta name="description" content="Welcome to my portfolio, where I showcase my personal projects." />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
 
       <Landing />
       <About />
