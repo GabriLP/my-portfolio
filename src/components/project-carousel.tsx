@@ -1,9 +1,7 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef } from 'react';
 import { motion, useTransform, useScroll } from 'framer-motion';
 import ProjectCard from './project-card';
 
-
-// Extended type for project
 interface Project {
   title: string;
   description: string;
@@ -12,7 +10,6 @@ interface Project {
   demoUrl: string;
 }
 
-// Sample data for projects
 const projects: Project[] = [
   {
     title: 'GlobalEmissions',
@@ -60,10 +57,9 @@ const ProjectsCarousel: React.FC = () => {
   const { scrollYProgress } = useScroll({ target: targetRef });
   const x = useTransform(scrollYProgress, [0, 1], ["0%", "-303%"]);
 
-
   return (
-    <section ref={targetRef} className="relative h-[350vh]">
-      <div className=" px-[4%] sticky top-0 flex items-center overflow-hidden">
+    <section ref={targetRef} className="relative h-[400vh] bg-background" id='works'>
+      <div className="px-[4%] sticky top-0 flex items-center overflow-hidden">
         <motion.div style={{ x }} className="flex gap-8 pr-[6%] md:pr-3" variants={containerVariants} initial="hidden" animate="show">
           {projects.map((project, index) => (
             <ProjectCard key={index} project={project} index={index} />
@@ -74,4 +70,4 @@ const ProjectsCarousel: React.FC = () => {
   );
 };
 
-export default ProjectsCarousel
+export default ProjectsCarousel;

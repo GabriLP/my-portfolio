@@ -1,72 +1,99 @@
-import type { Config } from "tailwindcss"
+import animate from 'tailwindcss-animate';
 
-const config = {
-  darkMode: ["class"],
+export default {
+  darkMode: ['class'],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
-	],
-  prefix: "",
+    './pages/**/*.{ts,tsx,js,jsx,mdx}',
+    './components/**/*.{ts,tsx,js,jsx,mdx}',
+    './app/**/*.{ts,tsx,js,jsx,mdx}',
+    './src/**/*.{ts,tsx,js,jsx,mdx}',
+  ],
   theme: {
     container: {
       center: true,
-      padding: "2rem",
-      screens: {
-        "2xl": "1400px",
-      },
+      padding: '2rem',
     },
     extend: {
-      fontFamily: {
-        'anton': ['Bricolage Grotesque', 'sans-serif'],
-        'sans': ['Inter', 'sans-serif'],
-      },
-      fontSize: {
-        'heading-1': 'clamp(5rem, 7vw, 9rem)',
-        'heading-2': 'clamp(3rem, 7vw, 6rem)',
-        'heading-3': 'clamp(2rem, 7vw, 4rem)',
-        'heading-4': 'clamp(1.5rem, 6vw, 3.5rem)',
-        'heading-5': 'clamp(1.5rem, 5vw, 3rem)',
-        'body-1': 'clamp(1rem, 2vw, 1.5rem)',
-        'body-2': 'clamp(0.85rem, 2vw, 1.25rem)',
-        'body-3': 'clamp(0.6rem, 2vw, 1rem)',
-      },
       colors: {
-        border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
-        background: '#212121',
-        foreground: "hsl(var(--foreground))",
-        text: "#FFFFFF",
-        primary: '#ff621D',
-        secondary: '#E75618',
-        error: '#F44336',
-        accent: '#795548',
+        border: 'hsl(var(--border))',
+        input: 'hsl(var(--input))',
+        ring: 'hsl(var(--ring))',
+        background: 'hsl(var(--background))',
+        foreground: 'hsl(var(--foreground))',
+        primary: {
+          DEFAULT: 'hsl(var(--primary))',
+          foreground: 'hsl(var(--primary-foreground))',
+        },
+        secondary: {
+          DEFAULT: 'hsl(var(--secondary))',
+          foreground: 'hsl(var(--secondary-foreground))',
+        },
+        destructive: {
+          DEFAULT: 'hsl(var(--destructive))',
+          foreground: 'hsl(var(--destructive-foreground))',
+        },
+        muted: {
+          DEFAULT: 'hsl(var(--muted))',
+          foreground: 'hsl(var(--muted-foreground))',
+        },
+        accent: {
+          DEFAULT: 'hsl(var(--accent))',
+          foreground: 'hsl(var(--accent-foreground))',
+        },
+        popover: {
+          DEFAULT: 'hsl(var(--popover))',
+          foreground: 'hsl(var(--popover-foreground))',
+        },
+        card: {
+          DEFAULT: 'hsl(var(--card))',
+          foreground: 'hsl(var(--card-foreground))',
+        },
+        chart: {
+          1: 'hsl(var(--chart-1))',
+          2: 'hsl(var(--chart-2))',
+          3: 'hsl(var(--chart-3))',
+          4: 'hsl(var(--chart-4))',
+          5: 'hsl(var(--chart-5))',
+        },
       },
       borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
+        DEFAULT: 'var(--radius)',
+        lg: 'var(--radius)',
+        md: 'calc(var(--radius) - 2px)',
+        sm: 'calc(var(--radius) - 4px)',
+      },
+      fontFamily: {
+        anton: ['Bricolage Grotesque', 'sans-serif'],
       },
       keyframes: {
-        "accordion-down": {
-          from: { height: "0" },
-          to: { height: "var(--radix-accordion-content-height)" },
+        marquee: {
+          from: { transform: 'translateX(0)' },
+          to: { transform: 'translateX(-50%)' },
         },
-        "accordion-up": {
-          from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: "0" },
+        'rotate-symbol': {
+          from: { transform: 'rotate(0deg)' },
+          to: { transform: 'rotate(360deg)' },
+        },
+        'accordion-down': {
+          from: { height: '0' },
+          to: { height: 'var(--radix-accordion-content-height)' },
+        },
+        'accordion-up': {
+          from: { height: 'var(--radix-accordion-content-height)' },
+          to: { height: '0' },
         },
       },
       animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
+        marquee: 'marquee linear infinite',
+        'rotate-symbol': 'rotate-symbol 4s linear infinite',
+        'accordion-down': 'accordion-down 0.2s ease-out',
+        'accordion-up': 'accordion-up 0.2s ease-out',
+      },
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+        'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
-  
-} satisfies Config
-
-export default config
+  plugins: [animate],
+};

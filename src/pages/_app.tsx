@@ -1,44 +1,90 @@
-import React from 'react';
+import React, { useEffect, useCallback } from 'react';
 import Head from 'next/head';
-import Script from 'next/script'; 
-import { useEffect } from 'react';
+import Script from 'next/script';
 import { useRouter } from 'next/router';
 import { AppProps } from 'next/app';
-import { ReactLenis } from '@studio-freight/react-lenis';
-import '../styles/global.css'
-import BackgroundAnimation from '@/components/ui/background-animation';
+import Lenis from 'lenis';
+import { ThemeProvider } from '@/components/theme-provider';
 import emailjs from '@emailjs/browser';
+import '../styles/animation.css';
+import '../styles/global.css';
+import BackgroundAnimation from '@/components/ui/background-animation';
+import ThemeToggle from '@/components/theme-toggle';
+import Navbar from '@/components/navbar';
 
-emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || '',);
+// EmailJS Initialization
+if (!process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY) {
+  console.error('EmailJS Public Key is missing.');
+} else {
+  emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY);
+}
 
 const App: React.FC<AppProps> = ({ Component, pageProps }) => {
-
   const router = useRouter();
 
   useEffect(() => {
-    const handleRouteChange = (url: string) => {
-      window.gtag('config', 'G-Y76V61BQJ8', {
-        page_path: url,
-      });
+    const lenis = new Lenis();
+
+    const raf = (time: number) => {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
     };
+
+    requestAnimationFrame(raf);
+
+    return () => {
+      lenis.destroy();
+    };
+  }, []);
+
+  useEffect(() => {
+    const handleRouteChange = (url: string) => {
+      if (typeof window.gtag === 'function') {
+        window.gtag('config', 'G-Y76V61BQJ8', {
+          page_path: url,
+        });
+      }
+    };
+
     router.events.on('routeChangeComplete', handleRouteChange);
     return () => {
       router.events.off('routeChangeComplete', handleRouteChange);
     };
   }, [router.events]);
 
+  const handleButtonInteraction = useCallback(
+    (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+      const button = e.currentTarget;
+      const rect = button.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      button.style.setProperty('--x', `${x}px`);
+      button.style.setProperty('--y', `${y}px`);
+
+      if (e.type === 'click') {
+        const ripple = document.createElement('span');
+        ripple.classList.add('ripple');
+        ripple.style.left = `${x}px`;
+        ripple.style.top = `${y}px`;
+        button.appendChild(ripple);
+
+        ripple.addEventListener('animationend', () => {
+          ripple.remove();
+        });
+      }
+    },
+    []
+  );
+
   return (
     <>
-      <Script
-        strategy="afterInteractive"
-        src={`https://www.googletagmanager.com/gtag/js?id=G-Y76V61BQJ8`}
-      />
+      <Script strategy="afterInteractive" src="https://www.googletagmanager.com/gtag/js?id=G-Y76V61BQJ8" />
       <Script id="google-analytics" strategy="afterInteractive">
         {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
-
           gtag('config', 'G-Y76V61BQJ8');
         `}
       </Script>
@@ -54,13 +100,14 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
         <meta property="og:url" content="https://gabrielelapiana.dev" />
         <link rel="canonical" href="https://gabrielelapiana.dev" />
         <link rel="icon" href="/favicon.ico" />
-
       </Head>
 
-        <ReactLenis root>
-      <BackgroundAnimation />
-      <Component {...pageProps} />
-        </ReactLenis>
+      <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <BackgroundAnimation />
+        <Navbar />
+        <ThemeToggle />
+        <Component {...pageProps} />
+      </ThemeProvider>
     </>
   );
 };

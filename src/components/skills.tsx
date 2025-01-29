@@ -13,31 +13,29 @@ const useMarquee = (
   useEffect(() => {
     const element = ref.current;
     if (!element) return;
-  
-    // Measure the width of a single set of content for accurate reset calculation
-    const contentWidth = element.scrollWidth / 2; 
+
+    const contentWidth = element.scrollWidth / 2;
     let xPos = 0;
     const update = () => {
-      requestAnimationFrame(animate); // Continue the animation loop
+      requestAnimationFrame(animate);
     };
-  
+
     const animate = () => {
       xPos += direction === 'left' ? -speedRef.current : speedRef.current;
-      // Reset based on the full width of the original content
       if (direction === 'left' && -xPos >= contentWidth) xPos = 0;
       if (direction === 'right' && xPos >= 0) xPos = -contentWidth;
       element.style.transform = `translateX(${xPos}px)`;
       update();
     };
-  
-    update(); // Start the animation
-  
-    const handleMouseEnter = () => speedRef.current = speedRef.current / 3; // Slow down
-    const handleMouseLeave = () => speedRef.current = initialSpeed; // Resume original speed
-  
+
+    update();
+
+    const handleMouseEnter = () => speedRef.current = speedRef.current / 3;
+    const handleMouseLeave = () => speedRef.current = initialSpeed;
+
     element.addEventListener('mouseenter', handleMouseEnter);
     element.addEventListener('mouseleave', handleMouseLeave);
-  
+
     return () => {
       element.removeEventListener('mouseenter', handleMouseEnter);
       element.removeEventListener('mouseleave', handleMouseLeave);
@@ -64,25 +62,25 @@ const Skills = () => {
 
   const renderSkills = (skills: string[]) => skills.map((skill, index) => (
     <React.Fragment key={index}>
-      {skill} <span className="rotate-symbol text-different-color">❋</span>{' '}
+      {skill} <span className="rotate-symbol text-primary">❋</span>{' '}
     </React.Fragment>
   ));
 
   return (
-    <section className="w-full h-screen overflow-hidden p-[4%]">
+    <section id='skills' className="w-full h-screen overflow-hidden p-[4%] bg-background">
       <AnimatedHeading 
         tag='h2'
         className="unselectable text-heading-2 font-anton mb-4 py-8 text-center overflow-hidden"
-        >
-      <AnimatedText text='Which tools I use' split={true} />
+      >
+        <AnimatedText text='Which tools I use' split={true} />
       </AnimatedHeading>
       <AnimatedContent delay={0.7}>
-      <div ref={marqueeRef1} className="p-[1rem] my-4 whitespace-nowrap text-heading-5 font-anton">
-      {renderSkills(skills1)} {renderSkills(skills1)}
-      </div>
-      <div ref={marqueeRef2} className="p-[1rem] my-4 whitespace-nowrap text-heading-5 font-anton mt-4">
+        <div ref={marqueeRef1} className="p-[1rem] my-4 whitespace-nowrap text-heading-5 font-anton text-foreground">
+          {renderSkills(skills1)} {renderSkills(skills1)}
+        </div>
+        <div ref={marqueeRef2} className="p-[1rem] my-4 whitespace-nowrap text-heading-5 font-anton text-foreground mt-4">
           {renderSkills(skills2)} {renderSkills(skills2)}
-      </div>
+        </div>
       </AnimatedContent>
     </section>
   );

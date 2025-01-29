@@ -1,0 +1,208 @@
+/* Base Animation Variables */
+:root {
+    --transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-duration: 200ms;
+  }
+  
+  /* Magnetic Button Enhancement */
+  .magnetic-btn {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    transition: transform var(--transition-duration) var(--transition-timing);
+  }
+  
+  .magnetic-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), 
+      hsl(var(--primary) / 0.15) 0%,
+      transparent 100%);
+    opacity: 0;
+    transition: opacity var(--transition-duration) var(--transition-timing);
+    z-index: -1;
+  }
+  
+  .magnetic-btn:hover::before {
+    opacity: 1;
+  }
+  
+  .magnetic-btn::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), 
+      hsl(var(--primary)) 0%,
+      transparent 50%);
+    opacity: 0;
+    mix-blend-mode: overlay;
+    transition: opacity var(--transition-duration) var(--transition-timing);
+    pointer-events: none;
+  }
+  
+  .magnetic-btn:hover::after {
+    opacity: 0.1;
+  }
+  
+  /* Project Card Animations */
+  .project-card {
+    position: relative;
+    transition: transform var(--transition-duration) var(--transition-timing);
+  }
+  
+  .project-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to right,
+      transparent,
+      hsl(var(--primary) / 0.1),
+      transparent
+    );
+    transform: translateX(-100%);
+    transition: transform var(--transition-duration) var(--transition-timing);
+  }
+  
+  .project-card:hover::before {
+    transform: translateX(100%);
+  }
+  
+  /* Technology Card Animations */
+  .tech-card {
+    position: relative;
+    transition: all var(--transition-duration) var(--transition-timing);
+  }
+  
+  .tech-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 2px;
+    background: linear-gradient(
+      45deg,
+      transparent,
+      hsl(var(--primary) / 0.3),
+      transparent
+    );
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity var(--transition-duration) var(--transition-timing);
+  }
+  
+  .tech-card:hover::before {
+    opacity: 1;
+  }
+  
+  /* Navigation Link Animations */
+  .nav-link {
+    position: relative;
+  }
+  
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 100%;
+    height: 2px;
+    background: hsl(var(--primary));
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform var(--transition-duration) var(--transition-timing);
+  }
+  
+  .nav-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+  
+  /* Icon Animations */
+  .icon-rotate {
+    transition: transform var(--transition-duration) var(--transition-timing);
+  }
+  
+  .icon-rotate:hover {
+    transform: rotate(12deg);
+  }
+  
+  /* Button Ripple Effect */
+  .ripple-button {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: hsl(var(--primary) / 0.3);
+    transform: scale(0);
+    animation: ripple 0.4s linear;
+    pointer-events: none;
+  }
+  
+  @keyframes ripple {
+    to {
+      transform: scale(4);
+      opacity: 0;
+    }
+  }
+  
+  /* Smooth Section Transitions */
+  .section-transition {
+    transition: opacity var(--transition-duration) var(--transition-timing),
+                transform var(--transition-duration) var(--transition-timing);
+  }
+  
+  .section-transition:not(.in-view) {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  
+  /* Focus Ring Animation */
+  .focus-ring {
+    position: relative;
+  }
+  
+  .focus-ring::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: inherit;
+    border: 2px solid transparent;
+    background: linear-gradient(45deg, 
+      hsl(var(--primary)), 
+      hsl(var(--primary) / 0.3)
+    ) border-box;
+    mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transform: scale(0.95);
+    transition: all var(--transition-duration) var(--transition-timing);
+  }
+  
+  .focus-ring:focus-visible::after {
+    opacity: 1;
+    transform: scale(1);
+  }
+  
+  /* Navbar Animations */
+  @keyframes slideDown {
+    from {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  .nav-slide-in {
+    animation: slideDown 0.2s var(--transition-timing);
+  }

@@ -3,6 +3,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import AnimatedHeading from './ui/animated-heading';
 import AnimatedContent from './ui/animated-content';
+import MagneticButton from './ui/magnetic-button';
 
 interface WordWithKey {
   word: string;
@@ -59,18 +60,17 @@ const Landing: React.FC = () => {
 
   return (
     <motion.section
-    className="h-screen flex justify-center items-center p-[5%] lg:p-[4%]"
-    style={{ opacity }}
-  >
-      <motion.div
-        className="w-full text-center flex flex-col"
-      >
+      className="h-screen flex justify-center items-center p-[5%] lg:p-[4%] bg-background"
+      style={{ opacity }}
+      id='home'
+    >
+      <motion.div className="w-full text-center flex flex-col">
         <AnimatedHeading 
-        className="unselectable text-heading-1 text-9xl font-anton mb-4 flex flex-col" 
-        tag="h1"
-        initial="hidden"
-        animate="visible"
-        variants={containerVariants}
+          className="unselectable text-heading-1 text-9xl font-anton mb-4 flex flex-col" 
+          tag="h1"
+          initial="hidden"
+          animate="visible"
+          variants={containerVariants}
         >
           <div className="md:pl-[10%] lg:pl-[15%] text-left overflow-hidden">
             {headerWords1.map(({ word, key }) => (
@@ -79,7 +79,7 @@ const Landing: React.FC = () => {
               </motion.span>
             ))}
           </div>
-          <div className="text-left  lg:pr-[15%] lg:text-right md:text-right overflow-hidden">
+          <div className="text-left lg:pr-[15%] lg:text-right md:text-right overflow-hidden">
             {headerWords2.map(({ word, key }) => (
               <motion.span key={key} className="inline-block" variants={itemVariants}>
                 {word}&nbsp;
@@ -88,9 +88,9 @@ const Landing: React.FC = () => {
           </div>
         </AnimatedHeading>
         <AnimatedContent delay={1}>
-        <p className='text-body-1 text-text mt-4'>
-              Front-End Developer based in Palermo, Italy.
-        </p>
+          <p className='text-body-1 text-foreground mt-4'>
+            Front-End Developer based in Palermo, Italy.
+          </p>
         </AnimatedContent>
       </motion.div>
     </motion.section>
