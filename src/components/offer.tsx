@@ -35,10 +35,10 @@ const expertiseAreas: ExpertiseArea[] = [
 
 const Offer: React.FC = () => {
   return (
-    <section id='offer' className="h-[120vh] p-[4%] bg-background">
+    <section id='offer' className="h-[120vh] p-8 lg:p-16 bg-background">
       <AnimatedHeading
         tag='h2'
-        className="unselectable text-heading-2 font-anton text-center mt-4 mb-4 py-8 overflow-hidden"
+        className="unselectable text-heading-2 font-display text-center mt-4 mb-4 py-8 overflow-hidden"
       >
         <AnimatedText text='What I focus on' split={true} />
       </AnimatedHeading>
@@ -46,7 +46,7 @@ const Offer: React.FC = () => {
         <Accordion type="single" collapsible>
           {expertiseAreas.map((area, index) => (
             <AccordionItem key={index} value={`item-${index}`}>
-              <AccordionTrigger className="font-anton text-heading-4">
+              <AccordionTrigger className="font-display text-heading-4">
                 {area.title}
               </AccordionTrigger>
               <AccordionContent className="text-body-1 text-foreground">

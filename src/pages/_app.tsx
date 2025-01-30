@@ -101,7 +101,10 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
         <link rel="canonical" href="https://gabrielelapiana.dev" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
+      <link
+        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap"
+        rel="stylesheet"
+      />
       <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
         <BackgroundAnimation />
         <Navbar />

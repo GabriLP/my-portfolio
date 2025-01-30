@@ -41,7 +41,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
       >
         <div className="grid grid-cols-1 gap-4 items-center w-full h-full">
           <div className="flex flex-col justify-center space-y-4">
-            <h3 className="text-heading-3 font-anton pt-4 text-foreground">{project.title}</h3>
+            <h3 className="text-heading-3 pt-4 text-foreground">{project.title}</h3>
             <p className="text-body-2 text-foreground">{project.description}</p>
             <div className="flex gap-4 z-10">
               <a

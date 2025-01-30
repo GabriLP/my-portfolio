@@ -1,5 +1,66 @@
+/* global.css */
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap');
+
+@theme {
+  /* Color System (OKLCH) */
+  --background: oklch(12.5% 0 0);      /* #212121 */
+  --foreground: oklch(100% 0 0);       /* #FFFFFF */
+  --primary: oklch(68.6% 0.183 35.5);  /* #ff621D */
+  --secondary: oklch(63.5% 0.202 35.1);/* #E75618 */
+  --destructive: oklch(63.3% 0.216 25.4); /* #F44336 */
+  --accent: oklch(53.7% 0.068 65.3);   /* #795548 */
+  --border: oklch(25.1% 0.015 260);
+  --input: oklch(25.1% 0.015 260);
+  --ring: oklch(68.6% 0.183 35.5);
+  
+  /* Chart Colors */
+  --chart-1: oklch(75% 0.2 30);
+  --chart-2: oklch(75% 0.2 120);
+  --chart-3: oklch(75% 0.2 210);
+  --chart-4: oklch(75% 0.2 300);
+  --chart-5: oklch(75% 0.2 60);
+
+  /* Typography */
+  --font-display: "Bricolage Grotesque", sans-serif;
+  --font-sans: "Inter", sans-serif;
+  
+  --radius: 0.5rem;
+}
+
+@theme (prefers-color-scheme: dark) {
+  --background: oklch(12.5% 0 0);
+  --foreground: oklch(100% 0 0);
+  --border: oklch(35% 0.02 260);
+}
+
+@layer utilities {
+  .text-heading-1 { font-size: clamp(5rem, 7vw, 9rem) }
+  .text-heading-2 { font-size: clamp(3rem, 7vw, 6rem) }
+  .text-heading-3 { font-size: clamp(2rem, 7vw, 4rem) }
+  .text-heading-4 { font-size: clamp(1.5rem, 6vw, 3.5rem) }
+  .text-heading-5 { font-size: clamp(1.5rem, 5vw, 3rem) }
+  .text-body-1 { font-size: clamp(1rem, 2vw, 1.5rem) }
+  .text-body-2 { font-size: clamp(0.85rem, 2vw, 1.25rem) }
+  .text-body-3 { font-size: clamp(0.6rem, 2vw, 1rem) }
+}
+
+@layer utilities {
+  .perspective-distant {
+    perspective: 1000px;
+  }
+  
+  .transform-3d {
+    transform-style: preserve-3d;
+  }
+}
+
+/* Dark mode */
+@theme (prefers-color-scheme: dark) {
+  --color-background: oklch(15% 0.02 260);
+  --color-foreground: oklch(95% 0.01 260);
+  --color-primary: oklch(65% 0.18 275);
+  --color-border: oklch(25% 0.03 260);
+}
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
@@ -14,100 +75,56 @@
   @apply bg-neutral-800;
 }
 
+.animate-accordion {
+  animation-duration: var(--animation-duration);
+  animation-timing-function: var(--ease-snappy);
+  will-change: height, opacity;
+}
+
 .unselectable {
-  @apply select-none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
-/* Theme-aware CSS variables */
-:root {
-  --background: 0 0% 100%;
-  --foreground: 222.2 84% 4.9%;
-  --card: 0 0% 100%;
-  --card-foreground: 222.2 84% 4.9%;
-  --popover: 0 0% 100%;
-  --popover-foreground: 222.2 84% 4.9%;
-  --primary: 222.2 47.4% 11.2%;
-  --primary-foreground: 210 40% 98%;
-  --secondary: 210 40% 96.1%;
-  --secondary-foreground: 222.2 47.4% 11.2%;
-  --muted: 210 40% 96.1%;
-  --muted-foreground: 215.4 16.3% 46.9%;
-  --accent: 210 40% 96.1%;
-  --accent-foreground: 222.2 47.4% 11.2%;
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 210 40% 98%;
-  --border: 214.3 31.8% 91.4%;
-  --input: 214.3 31.8% 91.4%;
-  --ring: 222.2 84% 4.9%;
-  --radius: 0.5rem;
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+.rotate-symbol {
+  display: inline-block;
+  color: var(--primary);
+  animation: rotate-symbol 4s linear infinite;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+@keyframes rotate-symbol {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }
 
-* {
-  @apply border-border;
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
 
-body {
-  @apply bg-background text-foreground;
+.marquee {
+  display: flex;
+  white-space: nowrap;
+  animation: marquee linear infinite;
 }
 
-/* Magnetic Button Effect */
-.magnetic-btn {
-  @apply relative transition-transform duration-200 ease-[cubic-bezier(0.25,0.46,0.45,0.94)];
+/* Custom scrollbar */
+::-webkit-scrollbar {
+width: 12px;
+height: 12px;
 }
 
-.magnetic-btn:hover {
-  transform: translate(
-    calc(var(--x) / 10),
-    calc(var(--y) / 10)
-  );
+::-webkit-scrollbar-thumb {
+background-color: rgb(59, 59, 59);
+border-radius: 6px;
 }
 
-/* Particles Animation */
-.particles {
-  @apply absolute w-full h-full;
-  background: radial-gradient(circle at center, rgba(var(--primary-rgb), 0.1) 0%, transparent 70%);
-}
-
-/* Smooth Transitions */
-* {
-  @apply transition-colors duration-300 ease-in-out;
-}
-
-/* Enhanced Hover Effects */
-.hover-lift {
-  @apply transition-transform duration-200 ease-in-out;
-}
-
-.hover-lift:hover {
-  @apply -translate-y-0.5;
+::-webkit-scrollbar-track {
+background: rgb(31, 31, 31);
 }

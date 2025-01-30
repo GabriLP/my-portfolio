@@ -67,18 +67,18 @@ const Skills = () => {
   ));
 
   return (
-    <section id='skills' className="w-full h-screen overflow-hidden p-[4%] bg-background">
+    <section id='skills' className="w-full h-screen overflow-hidden p-8 lg:p-16 bg-background">
       <AnimatedHeading 
         tag='h2'
-        className="unselectable text-heading-2 font-anton mb-4 py-8 text-center overflow-hidden"
+        className="unselectable text-heading-2 font-display mb-4 py-8 text-center overflow-hidden"
       >
         <AnimatedText text='Which tools I use' split={true} />
       </AnimatedHeading>
       <AnimatedContent delay={0.7}>
-        <div ref={marqueeRef1} className="p-[1rem] my-4 whitespace-nowrap text-heading-5 font-anton text-foreground">
+        <div ref={marqueeRef1} className="p-[1rem] my-4 whitespace-nowrap text-heading-5 font-display text-foreground">
           {renderSkills(skills1)} {renderSkills(skills1)}
         </div>
-        <div ref={marqueeRef2} className="p-[1rem] my-4 whitespace-nowrap text-heading-5 font-anton text-foreground mt-4">
+        <div ref={marqueeRef2} className="p-[1rem] my-4 whitespace-nowrap text-heading-5 font-display text-foreground mt-4">
           {renderSkills(skills2)} {renderSkills(skills2)}
         </div>
       </AnimatedContent>

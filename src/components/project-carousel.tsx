@@ -59,7 +59,7 @@ const ProjectsCarousel: React.FC = () => {
 
   return (
     <section ref={targetRef} className="relative h-[400vh] bg-background" id='works'>
-      <div className="px-[4%] sticky top-0 flex items-center overflow-hidden">
+      <div className="px-8 lg:px-16 sticky top-0 flex items-center overflow-hidden">
         <motion.div style={{ x }} className="flex gap-8 pr-[6%] md:pr-3" variants={containerVariants} initial="hidden" animate="show">
           {projects.map((project, index) => (
             <ProjectCard key={index} project={project} index={index} />

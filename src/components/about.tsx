@@ -21,16 +21,19 @@ export default function AboutSection() {
   const y = useTransform(scrollYProgress, [0, 1], [0, -100]);
 
   return (
-    <section id="about" className="relative min-h-screen py-20 px-4 md:px-6 overflow-hidden">
+    <section
+      id="about"
+      className="relative min-h-screen py-20 px-4 md:px-6 overflow-hidden"
+    >
       {/* Blurry Lights Background */}
       <DynamicBackground />
 
       <div className="max-w-6xl mx-auto relative z-10" ref={containerRef}>
-        <motion.div style={{ opacity, y }} className="space-y-8">
+        <motion.div style={{ opacity, y }} className="space-y-8 gpu-animate">
           {/* Animated Heading */}
           <AnimatedHeading
             tag="h1"
-            className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-primary to-primary/50 bg-clip-text text-transparent"
+            className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-primary to-primary/50 font-display bg-clip-text text-transparent"
           >
             <AnimatedText text="About me" split={true} />
           </AnimatedHeading>
@@ -70,11 +73,11 @@ export default function AboutSection() {
                 key={card.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
+                transition={{ delay: index * 0.1, ease: "easeOut" }}
                 viewport={{ once: true }}
-                className="group"
+                className="group gpu-animate"
               >
-                <Card className="bg-[var(--glass)] backdrop-blur-lg border-[var(--glass-border)] transition-all duration-300 hover:shadow-lg hover:bg-[var(--glass)]/80">
+                <Card className="bg-background/50 backdrop-blur-lg border-border transition-all duration-300 hover:shadow-lg hover:bg-background/80">
                   <CardContent className="pt-6">
                     <motion.div
                       whileHover={{ scale: 1.2, rotate: 10 }}
@@ -97,7 +100,11 @@ export default function AboutSection() {
           <motion.div
             className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
             animate={{ y: [0, 10, 0] }}
-            transition={{ repeat: Number.POSITIVE_INFINITY, duration: 1.5 }}
+            transition={{
+              repeat: Number.POSITIVE_INFINITY,
+              duration: 1.5,
+              ease: "easeOut",
+            }}
           >
             <ChevronDown className="w-6 h-6 text-primary" />
           </motion.div>
