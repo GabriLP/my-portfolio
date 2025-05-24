@@ -4,7 +4,7 @@ import Script from 'next/script';
 import { useRouter } from 'next/router';
 import { AppProps } from 'next/app';
 import Lenis from 'lenis';
-import { ThemeProvider } from '@/components/theme-provider';
+import { ThemeProvider } from 'next-themes'; // Ensure this import is correct
 import emailjs from '@emailjs/browser';
 import '../styles/animation.css';
 import '../styles/global.css';
@@ -51,31 +51,6 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
       router.events.off('routeChangeComplete', handleRouteChange);
     };
   }, [router.events]);
-
-  const handleButtonInteraction = useCallback(
-    (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-      const button = e.currentTarget;
-      const rect = button.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-
-      button.style.setProperty('--x', `${x}px`);
-      button.style.setProperty('--y', `${y}px`);
-
-      if (e.type === 'click') {
-        const ripple = document.createElement('span');
-        ripple.classList.add('ripple');
-        ripple.style.left = `${x}px`;
-        ripple.style.top = `${y}px`;
-        button.appendChild(ripple);
-
-        ripple.addEventListener('animationend', () => {
-          ripple.remove();
-        });
-      }
-    },
-    []
-  );
 
   return (
     <>

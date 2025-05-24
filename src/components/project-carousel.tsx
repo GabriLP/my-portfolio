@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useRef } from 'react';
 import { motion, useTransform, useScroll } from 'framer-motion';
 import ProjectCard from './project-card';
@@ -41,28 +43,17 @@ const projects: Project[] = [
   },
 ];
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.2,
-    },
-  },
-};
-
 const ProjectsCarousel: React.FC = () => {
   const targetRef = useRef<HTMLDivElement | null>(null);
   const { scrollYProgress } = useScroll({ target: targetRef });
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-303%"]);
+  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-300%"]);
 
   return (
-    <section ref={targetRef} className="relative h-[400vh] bg-background" id='works'>
+    <section ref={targetRef} className="relative h-[400vh]" id='works' aria-label="Projects Section">
       <div className="px-8 lg:px-16 sticky top-0 flex items-center overflow-hidden">
-        <motion.div style={{ x }} className="flex gap-8 pr-[6%] md:pr-3" variants={containerVariants} initial="hidden" animate="show">
+        <motion.div style={{ x }} className="flex gap-8 pr-[6%] md:pr-3">
           {projects.map((project, index) => (
-            <ProjectCard key={index} project={project} index={index} />
+            <ProjectCard key={index} project={project} />
           ))}
         </motion.div>
       </div>

@@ -7,8 +7,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import AnimatedHeading from "./ui/animated-heading";
 import AnimatedText from "./ui/animated-words";
 import AnimatedContent from "./ui/animated-content";
-import BlurryLights from "./ui/blurry-lights";
-import DynamicBackground from "./ui/DynamicBackground";
 
 export default function AboutSection() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -23,24 +21,22 @@ export default function AboutSection() {
   return (
     <section
       id="about"
-      className="relative min-h-screen py-20 px-4 md:px-6 overflow-hidden"
+      className="relative min-h-screen py-20 px-4 md:px-8 lg:px-16 overflow-hidden"
+      aria-label="About Section"
     >
-      {/* Blurry Lights Background */}
-      <DynamicBackground />
-
       <div className="max-w-6xl mx-auto relative z-10" ref={containerRef}>
         <motion.div style={{ opacity, y }} className="space-y-8 gpu-animate">
           {/* Animated Heading */}
           <AnimatedHeading
             tag="h1"
-            className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-primary to-primary/50 font-display bg-clip-text text-transparent"
+            className="text-heading-1 font-bold font-display bg-clip-text overflow-hidden"
           >
             <AnimatedText text="About me" split={true} />
           </AnimatedHeading>
 
           {/* Animated Content */}
           <AnimatedContent delay={0.7}>
-            <p className="text-body-1 text-foreground flex justify-end max-w-2xl ml-auto">
+            <p className="text-body-1 text-justify max-w-2xl ml-auto">
               I started web development over a year ago and love how it blends thinking and creativity. <br />
               What excites me most about this field is the ability to positively impact both businesses and end-users. <br />
               Continually updating my skills with the latest technologies, I&apos;m dedicated to crafting high-quality, clean, detail-oriented code.
@@ -48,7 +44,7 @@ export default function AboutSection() {
           </AnimatedContent>
 
           {/* Cards Section */}
-          <div className="grid gap-8 md:grid-cols-3 mt-12">
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 mt-12">
             {[
               {
                 icon: <Code2 className="w-8 h-8 text-primary" />,
@@ -101,12 +97,12 @@ export default function AboutSection() {
             className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
             animate={{ y: [0, 10, 0] }}
             transition={{
-              repeat: Number.POSITIVE_INFINITY,
+              repeat: Infinity,
               duration: 1.5,
-              ease: "easeOut",
+              ease: "easeInOut",
             }}
           >
-            <ChevronDown className="w-6 h-6 text-primary" />
+            <ChevronDown className="w-6 h-6 text-primary" aria-hidden="true" />
           </motion.div>
         </motion.div>
       </div>

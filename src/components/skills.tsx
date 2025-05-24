@@ -1,10 +1,12 @@
-import React, { useRef, useEffect, RefObject } from 'react';
+"use client";
+
+import React, { useRef, useEffect } from 'react';
 import AnimatedHeading from './ui/animated-heading';
 import AnimatedText from './ui/animated-words';
 import AnimatedContent from './ui/animated-content';
 
 const useMarquee = (
-  ref: RefObject<HTMLDivElement>,
+  ref: React.RefObject<HTMLDivElement>,
   initialSpeed: number,
   direction: 'left' | 'right' = 'left'
 ) => {
@@ -67,7 +69,7 @@ const Skills = () => {
   ));
 
   return (
-    <section id='skills' className="w-full h-screen overflow-hidden p-8 lg:p-16 bg-background">
+    <section id='skills' className="w-full h-screen overflow-hidden p-8 lg:p-16" aria-label="Skills Section">
       <AnimatedHeading 
         tag='h2'
         className="unselectable text-heading-2 font-display mb-4 py-8 text-center overflow-hidden"
@@ -75,10 +77,10 @@ const Skills = () => {
         <AnimatedText text='Which tools I use' split={true} />
       </AnimatedHeading>
       <AnimatedContent delay={0.7}>
-        <div ref={marqueeRef1} className="p-[1rem] my-4 whitespace-nowrap text-heading-5 font-display text-foreground">
+        <div ref={marqueeRef1} className="p-[1rem] my-4 whitespace-nowrap text-heading-5 font-display">
           {renderSkills(skills1)} {renderSkills(skills1)}
         </div>
-        <div ref={marqueeRef2} className="p-[1rem] my-4 whitespace-nowrap text-heading-5 font-display text-foreground mt-4">
+        <div ref={marqueeRef2} className="p-[1rem] my-4 whitespace-nowrap text-heading-5 font-display mt-4">
           {renderSkills(skills2)} {renderSkills(skills2)}
         </div>
       </AnimatedContent>

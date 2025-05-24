@@ -1,56 +1,18 @@
-import { useState, useEffect } from 'react';
-import React from 'react';
+"use client";
+
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import AnimatedHeading from './ui/animated-heading';
 import AnimatedContent from './ui/animated-content';
 
-interface WordWithKey {
-  word: string;
-  key: string;
-}
-
-const splitWords = (text: string): WordWithKey[] => {
-  return text.split(' ').map((word: string, index: number): WordWithKey => ({
-    word,
-    key: `${word}-${index}`,
-  }));
-};
-
 const Landing: React.FC = () => {
-  const headerText1: string = "Hi there, I'm";
-  const headerText2: string = "Gabriele La Piana.";
-  const headerWords1: WordWithKey[] = splitWords(headerText1);
-  const headerWords2: WordWithKey[] = splitWords(headerText2);
-
-  const containerVariants = {
-    hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { y: 300, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.5,
-        ease: "easeOut",
-      },
-    },
-  };
-
   const [opacity, setOpacity] = useState(1);
 
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
       const height = window.innerHeight;
-      const divisor = height / 2;
-      const newOpacity = 1 - scrollY / divisor;
+      const newOpacity = 1 - scrollY / height;
       setOpacity(Math.max(newOpacity, 0));
     };
 
@@ -60,43 +22,20 @@ const Landing: React.FC = () => {
 
   return (
     <motion.section
-      className="h-screen flex justify-center items-center p-8 lg:p-16 bg-background gpu-animate"
+      className="h-screen flex justify-center items-center p-8 lg:p-16"
       style={{ opacity }}
       id="home"
+      aria-label="Home Section"
     >
       <motion.div className="w-full text-center flex flex-col">
         <AnimatedHeading
-          className="unselectable text-heading-1 mb-4 flex flex-col font-display"
+          className="unselectable text-heading-1 md:text-7xl lg:text-8xl font-bold mb-4 flex flex-col font-display"
           tag="h1"
-          initial="hidden"
-          animate="visible"
-          variants={containerVariants}
         >
-          <div className="md:pl-[10%] lg:pl-[15%] text-left overflow-hidden">
-            {headerWords1.map(({ word, key }) => (
-              <motion.span
-                key={key}
-                className="inline-block"
-                variants={itemVariants}
-              >
-                {word}&nbsp;
-              </motion.span>
-            ))}
-          </div>
-          <div className="text-left lg:pr-[15%] lg:text-right md:text-right overflow-hidden">
-            {headerWords2.map(({ word, key }) => (
-              <motion.span
-                key={key}
-                className="inline-block"
-                variants={itemVariants}
-              >
-                {word}&nbsp;
-              </motion.span>
-            ))}
-          </div>
+          Hi there, I'm <span className="text-primary">Gabriele La Piana</span>
         </AnimatedHeading>
         <AnimatedContent delay={1}>
-          <p className="text-body-1 text-foreground mt-4">
+          <p className="text-body-1 mt-4">
             Front-End Developer based in Palermo, Italy.
           </p>
         </AnimatedContent>

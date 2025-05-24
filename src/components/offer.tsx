@@ -1,3 +1,5 @@
+"use client";
+
 import React from 'react';
 import {
   Accordion,
@@ -35,7 +37,7 @@ const expertiseAreas: ExpertiseArea[] = [
 
 const Offer: React.FC = () => {
   return (
-    <section id='offer' className="h-[120vh] p-8 lg:p-16 bg-background">
+    <section id='offer' className="h-[120vh] p-8 lg:p-16" aria-label="Offer Section">
       <AnimatedHeading
         tag='h2'
         className="unselectable text-heading-2 font-display text-center mt-4 mb-4 py-8 overflow-hidden"
@@ -46,10 +48,10 @@ const Offer: React.FC = () => {
         <Accordion type="single" collapsible>
           {expertiseAreas.map((area, index) => (
             <AccordionItem key={index} value={`item-${index}`}>
-              <AccordionTrigger className="font-display text-heading-4">
+              <AccordionTrigger className="font-display text-heading-4" aria-expanded={false} aria-controls={`content-${index}`}>
                 {area.title}
               </AccordionTrigger>
-              <AccordionContent className="text-body-1 text-foreground">
+              <AccordionContent className="text-body-1 text-foreground" id={`content-${index}`}>
                 {area.description}
               </AccordionContent>
             </AccordionItem>
