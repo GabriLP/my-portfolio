@@ -1,0 +1,100 @@
+@import "tailwindcss";
+
+:root {
+  /* Palette Industrial */
+  --bg-dark: #050505;       /* Quasi nero assoluto */
+  --rust-primary: #8b3a3a;  /* Ruggine scuro */
+  --rust-secondary: #5c2626;
+  --yellow-signal: #ffcc00; /* Giallo Segnaletica */
+  --text-main: #e0e0e0;     /* Grigio chiaro (mai bianco puro) */
+  
+  /* Texture Overlay (lo aggiungeremo dopo) */
+  --noise-opacity: 0.05;
+}
+
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  overflow-x: hidden; /* Evita scroll orizzontali indesiderati */
+}
+
+/* Utility classes per i font */
+.font-industrial {
+  font-family: var(--font-industrial), sans-serif;
+  text-transform: uppercase; /* Quel font rende meglio in uppercase */
+}
+
+.font-mono {
+  font-family: var(--font-mono), monospace;
+}
+
+/* Effetto di selezione testo (dettaglio stiloso) */
+::selection {
+  background: var(--rust-primary);
+  color: var(--yellow-signal);
+}
+
+/* Creiamo un overlay fisso che sta sopra a tutto per dare granulosità */
+.global-texture-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* Così puoi cliccare sotto */
+  z-index: 50; /* Sopra a tutto */
+  opacity: 0.15; /* Regola questo valore per l'intensità */
+  background-image: url('/assets/rust-noise.webp');
+  background-repeat: repeat;
+  background-size: 512px; /* O la dimensione della tua texture */
+  mix-blend-mode: overlay; /* Questo fonde la ruggine coi colori sotto */
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px; /* Molto sottile */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(0, 20, 0, 0.3); /* Sfondo scuro semitrasparente */
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--rust-primary); /* Colore Ruggine */
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--yellow-signal); /* Diventa gialla all'hover */
+}
+
+/* Per Firefox */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--rust-primary) rgba(0, 20, 0, 0.3);
+}
+
+.clip-path-slant {
+  clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+}
+
+.hazard-stripes {
+  background: repeating-linear-gradient(
+    45deg,
+    #ffcc00,
+    #ffcc00 10px,
+    #000000 10px,
+    #000000 20px
+  );
+  opacity: 0.8;
+}
+
+/* Effetto cursore che lampeggia */
+.cursor-blink {
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
